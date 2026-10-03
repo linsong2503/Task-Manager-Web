@@ -21,7 +21,7 @@ export default function Register() {
 
   return (
     <div className="bg-[url(/bgimg.png)] bg-center bg-cover min-h-screen flex items-center justify-center">
-      <div className="p-6 rounded-xl w-105 bg-transparent outline-solid ">
+      <div className="p-6 rounded-xl w-full bg-transparent outline-solid ">
         <div className="mb-3 text-center">
           <h1 className=" text-black text-3xl">Sign Up</h1>
         </div>
