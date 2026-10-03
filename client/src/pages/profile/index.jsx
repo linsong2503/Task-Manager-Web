@@ -23,23 +23,23 @@ const Profile = () => {
   const [form] = Form.useForm();
 
   const handleChangePassword = async (values) => {
-    try {
-      setIsChangingPassword(true);
+    // try {
+    //   setIsChangingPassword(true);
 
-      const res = await _api.authApi.changePassword({
-        oldPassword: values.oldPassword,
-        newPassword: values.newPassword,
-      });
+    //   const res = await _api.authApi.changePassword({
+    //     oldPassword: values.oldPassword,
+    //     newPassword: values.newPassword,
+    //   });
 
-      if (res?.code === 1) {
-        message.success("Password changed successfully");
-        form.resetFields();
-      }
-    } catch (error) {
-      console.log("Change password error:", error);
-    } finally {
-      setIsChangingPassword(false);
-    }
+    //   if (res?.code === 1) {
+    //     message.success("Password changed successfully");
+    //     form.resetFields();
+    //   }
+    // } catch (error) {
+    //   console.log("Change password error:", error);
+    // } finally {
+    //   setIsChangingPassword(false);
+    // }
   };
 
   return (
