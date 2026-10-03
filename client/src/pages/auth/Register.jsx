@@ -1,11 +1,10 @@
 import FormInput from "../../components/common/FormInput.jsx";
 import { Form, Button } from "antd";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as _api from "../../api/index.js";
 
-
 export default function Register() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onFinish = async (vals) => {
     const res = await _api.authApi.register({
@@ -14,18 +13,28 @@ export default function Register() {
       email: vals.email,
       password: vals.password,
     });
+
     if (res?.tokens) {
-      navigate('/login')
+      navigate("/login");
     }
   };
 
   return (
-    <div className="bg-[url(/bgimg.png)] bg-center bg-cover min-h-screen flex items-center justify-center">
-      <div className="p-6 rounded-xl w-full bg-transparent outline-solid ">
-        <div className="mb-3 text-center">
-          <h1 className=" text-black text-3xl">Sign Up</h1>
+    <div className="bg-[url(/bgimg.png)] bg-center bg-cover min-h-screen flex items-center justify-center px-4 py-6">
+      <div className="p-5 sm:p-6 rounded-xl w-full max-w-md bg-transparent outline-solid">
+        <div className="mb-4 text-center">
+          <h1 className="text-black text-2xl sm:text-3xl">
+            Sign Up
+          </h1>
         </div>
-        <Form labelWrap name="signup" autoComplete="off" onFinish={onFinish}>
+
+        <Form
+          labelWrap
+          name="signup"
+          autoComplete="off"
+          onFinish={onFinish}
+          layout="vertical"
+        >
           <FormInput
             name="name"
             label="Full name"
@@ -37,6 +46,7 @@ export default function Register() {
               },
             ]}
           />
+
           <FormInput
             name="username"
             label="Username"
@@ -48,6 +58,7 @@ export default function Register() {
               },
             ]}
           />
+
           <FormInput
             name="email"
             label="Email"
@@ -60,6 +71,7 @@ export default function Register() {
               },
             ]}
           />
+
           <FormInput
             name="password"
             label="Password"
@@ -72,18 +84,20 @@ export default function Register() {
               },
             ]}
           />
-          <div className="flex w-full gap-5 mb-3">
+
+          <div className="flex w-full mb-4">
             <Button
               type="default"
               htmlType="submit"
-              className=" flex-1 bg-green-500! border-gray-300! text-gray-800! hover:bg-gray-200!"
+              className="w-full h-10! bg-green-500! border-gray-300! text-gray-800! hover:bg-gray-200!"
             >
               Sign Up
             </Button>
           </div>
-          <Link to={"/login"} className="text-center">
-            <p className="text-black hover:text-blue-500">
-              Already have an account ? Sign in
+
+          <Link to="/login" className="block text-center">
+            <p className="text-black text-sm sm:text-base hover:text-blue-500">
+              Already have an account? Sign in
             </p>
           </Link>
         </Form>
