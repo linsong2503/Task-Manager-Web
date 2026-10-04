@@ -14,6 +14,7 @@ export const staticPath = {
   settings: "/settings",
   login: "/login",
   register: "/register",
+  forgotPassword:"/forgot-password"
 };
 
 export const routes = [

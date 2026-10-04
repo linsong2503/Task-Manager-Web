@@ -12,3 +12,10 @@ export const logout = (payload) => {
   return restApi.post("/auth/logout", payload);
 };
 
+export const forgotPassword = (payload) =>{
+  return restApi.post("/auth/forgot-password",payload)
+}
+
+export const resetPassword = (payload) => {
+  return restApi.post("/auth/reset-password", payload);
+};

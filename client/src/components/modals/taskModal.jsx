@@ -2,19 +2,17 @@ import { Button, DatePicker, Form, Input, Modal, Select, message } from "antd";
 import dayjs from "dayjs";
 import * as _api from "../../api/index.js";
 import useSettings from "../../contexts/settingsContext.jsx";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 const TaskModal = ({ open, onClose, onSuccess }) => {
   const [form] = Form.useForm();
   const { settings } = useSettings();
-const [modalWidth, setModalWidth] = useState(
+  const [modalWidth, setModalWidth] = useState(
     window.innerWidth < 768 ? "90%" : 450,
   );
 
   useEffect(() => {
     const handleResize = () => {
-      setModalWidth(
-        window.innerWidth < 768 ? "90%" : 450,
-      );
+      setModalWidth(window.innerWidth < 768 ? "90%" : 450);
     };
 
     window.addEventListener("resize", handleResize);
