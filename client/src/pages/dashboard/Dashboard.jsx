@@ -12,8 +12,9 @@ import {
   FieldTimeOutlined,
   WarningOutlined,
 } from "@ant-design/icons";
+import useAuth from "../../contexts/authContext.jsx";
 export default function HomePage() {
-  const { settings } = useSettings();
+  const { user } = useAuth();
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -142,7 +143,7 @@ export default function HomePage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
           <h1 className="font-semibold text-black text-xl sm:text-2xl">
-            Welcome back, Lam
+            Welcome back, {user?.name.split("")[0]}
           </h1>
           <p className="text-sm sm:text-base text-gray-600">
             Here's what's happening with your tasks today
