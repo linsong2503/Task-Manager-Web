@@ -44,6 +44,48 @@ const priorityItems = [
   { key: "high", label: "High" },
 ];
 
+// const sortItems = [
+//   {
+//     key: "dueDate",
+//     label: (
+//       <span className="flex items-center gap-2">
+//         Due Date
+//         <ArrowUpOutlined />
+//       </span>
+//     ),
+//   },
+//   {
+//     key: "-dueDate",
+//     label: (
+//       <span className="flex items-center gap-2">
+//         Due Date
+//         <ArrowDownOutlined />
+//       </span>
+//     ),
+//   },
+// ];
+
+// const sortItems = [
+//   {
+//     key: "asc",
+//     label: (
+//       <span className="flex items-center gap-2">
+//         Due Date
+//         <ArrowUpOutlined />
+//       </span>
+//     ),
+//   },
+//   {
+//     key: "desc",
+//     label: (
+//       <span className="flex items-center gap-2">
+//         Due Date
+//         <ArrowDownOutlined />
+//       </span>
+//     ),
+//   },
+// ];
+
 const sortItems = [
   {
     key: "dueDate",
@@ -172,7 +214,7 @@ const TaskPage = () => {
     searchParams.get("priority") || "all",
   );
 
-  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "asc");
+  const [sortBy, setSortBy] = useState(searchParams.get("sortBy") || "dueDate");
 
   const [tasks, setTasks] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -191,17 +233,74 @@ const TaskPage = () => {
     total: 0,
   });
 
+  // const getTaskParams = () => {
+
+  //   const params = {
+  //     page: Number(searchParams.get("page")) || 1,
+  //     limit: 5,
+  //     sortBy: searchParams.get("sortBy") || settings.defaultSort,
+  //     // sortOrder: "asc",
+  //   };
+  //   const title = searchParams.get("title");
+  //   const urlStatus = searchParams.get("status");
+  //   const urlPriority = searchParams.get("priority");
+  //   const urlSortBy = searchParams.get("sortBy");
+
+  //   if (title) {
+  //     params.title = title;
+  //   }
+
+  //   if (urlStatus) {
+  //     params.status = urlStatus;
+  //   }
+
+  //   if (urlPriority) {
+  //     params.priority = urlPriority;
+  //   }
+  //   if (urlSortBy) {
+  //     params.sortBy = urlSortBy;
+  //   }
+
+  //   return params;
+  // };
+
+  //   const getTaskParams = () => {
+  //   const params = {
+  //     page: Number(searchParams.get("page")) || 1,
+  //     limit: 5,
+  //     sortBy: searchParams.get("sortBy") || settings.defaultSort,
+  //     sortOrder: searchParams.get("sortOrder") || "asc",
+  //   };
+
+  //   const title = searchParams.get("title");
+  //   const urlStatus = searchParams.get("status");
+  //   const urlPriority = searchParams.get("priority");
+
+  //   if (title) {
+  //     params.title = title;
+  //   }
+
+  //   if (urlStatus) {
+  //     params.status = urlStatus;
+  //   }
+
+  //   if (urlPriority) {
+  //     params.priority = urlPriority;
+  //   }
+
+  //   return params;
+  // };
+
   const getTaskParams = () => {
     const params = {
       page: Number(searchParams.get("page")) || 1,
       limit: 5,
-      sortBy: searchParams.get("sortBy") || settings.defaultSort,
-      sortOrder: "asc",
+      sortBy: searchParams.get("sortBy") || "dueDate",
     };
+
     const title = searchParams.get("title");
     const urlStatus = searchParams.get("status");
     const urlPriority = searchParams.get("priority");
-    const urlSortBy = searchParams.get("sortBy");
 
     if (title) {
       params.title = title;
@@ -213,9 +312,6 @@ const TaskPage = () => {
 
     if (urlPriority) {
       params.priority = urlPriority;
-    }
-    if (urlSortBy) {
-      params.sortBy = urlSortBy;
     }
 
     return params;
@@ -291,6 +387,32 @@ const TaskPage = () => {
     setTodo(todoCount);
   };
 
+  // useEffect(() => {
+  //   const urlStatus = searchParams.get("status") || "all";
+  //   const urlPriority = searchParams.get("priority") || "all";
+  //   const urlSortBy = searchParams.get("sortBy") || "dueDate";
+
+  //   setStatus(urlStatus);
+  //   setPriority(urlPriority);
+  //   setSortBy(urlSortBy);
+
+  //   fetchTasks(getTaskParams());
+  // }, [searchParams]);
+
+  //   useEffect(() => {
+  //   const urlStatus = searchParams.get("status") || "all";
+  //   const urlPriority = searchParams.get("priority") || "all";
+  //   const urlSortBy = searchParams.get("sortBy") || "dueDate";
+  //   const urlSortOrder = searchParams.get("sortOrder") || "asc";
+
+  //   setStatus(urlStatus);
+  //   setPriority(urlPriority);
+  //   setSortBy(urlSortBy);
+  //   setSortOrder(urlSortOrder);
+
+  //   fetchTasks(getTaskParams());
+  // }, [searchParams]);
+
   useEffect(() => {
     const urlStatus = searchParams.get("status") || "all";
     const urlPriority = searchParams.get("priority") || "all";
@@ -335,14 +457,37 @@ const TaskPage = () => {
     setSearchParams(params);
   };
 
+  // const handleSortingChange = ({ key }) => {
+  //   const params = new URLSearchParams(searchParams);
+  //   if (key === "dueDate") {
+  //     params.delete("sortBy");
+  //   } else {
+  //     params.set("sortBy", key);
+  //   }
+  //   params.set("page", "1");
+  //   setSearchParams(params);
+  // };
+
+  //   const handleSortingChange = ({ key }) => {
+  //   const params = new URLSearchParams(searchParams);
+
+  //   params.set("sortBy", "dueDate");
+  //   params.set("sortOrder", key);
+  //   params.set("page", "1");
+
+  //   setSearchParams(params);
+  // };
   const handleSortingChange = ({ key }) => {
     const params = new URLSearchParams(searchParams);
+
     if (key === "dueDate") {
       params.delete("sortBy");
     } else {
       params.set("sortBy", key);
     }
+
     params.set("page", "1");
+
     setSearchParams(params);
   };
 
@@ -379,6 +524,10 @@ const TaskPage = () => {
     priorityItems.find((item) => item.key === priority)?.label ||
     "All Priorities";
 
+  // const selectedSorting =
+  //   sortItems.find((item) => item.key === sortBy)?.label || "";
+  // const selectedSorting =
+  // sortItems.find((item) => item.key === sortOrder)?.label || "";
   const selectedSorting =
     sortItems.find((item) => item.key === sortBy)?.label || "";
 
