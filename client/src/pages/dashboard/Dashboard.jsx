@@ -143,7 +143,7 @@ export default function HomePage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="min-w-0">
           <h1 className="font-semibold text-black text-xl sm:text-2xl">
-            Welcome back, {user?.name.split("")[0]}
+            Welcome back, {user?.name}
           </h1>
           <p className="text-sm sm:text-base text-gray-600">
             Here's what's happening with your tasks today
